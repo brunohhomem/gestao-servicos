@@ -39,6 +39,12 @@ public class ServicoController {
         return service.alterar(servico);
     }
 
+    @PostMapping("/{id}")
+    public ResponseEntity<Void> cancelar(@PathVariable Long id){
+        service.cancelarServico(id);
+        return ResponseEntity.ok().build();
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> remover(@PathVariable Long id){
         service.excluir(id);

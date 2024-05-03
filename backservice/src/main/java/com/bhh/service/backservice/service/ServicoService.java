@@ -41,7 +41,15 @@ public class ServicoService {
         return repository.saveAndFlush(entity);
     }
 
+    public void cancelarServico(Long id){
+        Servico servico = repository.findById(id).orElseThrow(() -> new RuntimeException("Serviço não encontrado"));
+        servico.setStatus(PagamentoStatus.CANCELADO);
+        repository.save(servico);
+    }
+
+
     public void excluir(Long id){
-        repository.deleteById(id);
+        Servico servico = repository.findById(id).orElseThrow(() -> new RuntimeException("Serviço não encontrado"));
+        repository.delete(servico);
     }
 }
