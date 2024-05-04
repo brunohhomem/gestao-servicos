@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface ServicoRepository extends JpaRepository<Servico, Long> {
 
-    @Query("SELECT s FROM Servico s where s.valorPago is null OR s.valorPago = 0")
+    @Query("SELECT s FROM Servico s where (s.valorPago is null OR s.valorPago = 0) AND s.status!='CANCELADO'")
     List<Servico> buscarPagamentoPendente();
 
     @Query("SELECT s FROM Servico s where s.status = 'CANCELADO'")
